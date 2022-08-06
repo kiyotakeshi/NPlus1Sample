@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: 'create-drop'
+  datasource:
+    url: jdbc:h2:mem:commerce
+  sql:
+    init:
+      platform: h2
+      mode: always
+  #      dataLocations: classpath:db/data-h2.sql
+  flyway:
+    enabled: false
+## パラメータの値をログに表示 ex.) binding parameter [1] as [INTEGER] - [1]
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder: TRACE
