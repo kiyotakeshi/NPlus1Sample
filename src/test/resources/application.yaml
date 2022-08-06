@@ -2,12 +2,17 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: 'create-drop'
+      # @see https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5-Release-Notes#hibernate-and-datasql
+      # ddl-auto: none # if you use schema.sql
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
   datasource:
     url: jdbc:h2:mem:commerce
   sql:
+    # @see https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.5-Release-Notes#upgrading-from-spring-boot-24
     init:
       platform: h2
+      # always initialize a database using scripts
       mode: always
   #      dataLocations: classpath:db/data-h2.sql
   flyway:
