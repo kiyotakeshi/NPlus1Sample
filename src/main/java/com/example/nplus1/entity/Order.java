@@ -1,5 +1,6 @@
 package com.example.nplus1.entity;
 
+import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -8,7 +9,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "`order`") // escape reserved keyword
 @ToString
+@Getter
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,12 +20,17 @@ public class Order {
 
     private LocalDateTime time;
 
-    protected Order(){
+    @ManyToOne
+    // if you write explicitly
+    // @JoinColumn(name = "user_id")
+    private User user;
 
+    protected Order(){
     }
 
-    public Order(int totalPrice, LocalDateTime time) {
+    public Order(int totalPrice, LocalDateTime time, User user) {
         this.totalPrice = totalPrice;
         this.time = time;
+        this.user = user;
     }
 }
