@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "`order`") // escape reserved keyword
@@ -25,12 +26,16 @@ public class Order {
     // @JoinColumn(name = "user_id")
     private User user;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
+
     protected Order(){
     }
 
-    public Order(int totalPrice, LocalDateTime time, User user) {
+    public Order(int totalPrice, LocalDateTime time, User user, List<OrderDetail> orderDetails) {
         this.totalPrice = totalPrice;
         this.time = time;
         this.user = user;
+        this.orderDetails = orderDetails;
     }
 }
