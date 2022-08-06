@@ -14,8 +14,7 @@ class UserTests {
     @Test
     void
     name() {
-        User mike = new User("mike", "mike@example.com");
-         em.persist(mike);
+        em.persist(new User("mike", "mike@example.com"));
         User user = em.find(User.class, 1L);
         User user2 = em.find(User.class, 100L);
         System.out.println(user);
