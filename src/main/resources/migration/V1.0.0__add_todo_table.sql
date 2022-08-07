@@ -1,2 +1,0 @@
--- auto-increment from 1
--- create table employee (id SERIAL NOT NULL, department VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY (id));
