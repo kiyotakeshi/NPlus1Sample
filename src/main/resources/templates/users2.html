@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<tbody>
+<tr th:each="user: ${users}">
+    <td th:text="${user.id}"/>
+    <td th:text="${user.name}"/>
+    <td th:text="${user.email}"/>
+    <td th:text="${user.orders.get(0).totalPrice}"/>
+    <td th:text="${user.orders.get(0).orderDetails}"/>
+</tr>
+</tbody>
+</body>
+</html>

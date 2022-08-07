@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "`order`") // escape reserved keyword
-@ToString
 @Getter
 public class Order {
 
