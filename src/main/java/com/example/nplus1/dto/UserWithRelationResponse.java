@@ -14,6 +14,5 @@ public class UserWithRelationResponse {
 
     private String email;
 
-    @JsonManagedReference
     private List<OrderResponse> orders;
 }

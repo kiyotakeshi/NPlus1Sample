@@ -1,5 +1,6 @@
 package com.example.nplus1.controller;
 
+import com.example.nplus1.dto.OrderDetailResponse;
 import com.example.nplus1.dto.OrderResponse;
 import com.example.nplus1.dto.UserResponse;
 import com.example.nplus1.dto.UserWithRelationResponse;
@@ -38,7 +39,10 @@ public class NPlus1RestController {
                 .map(user ->
                         new UserWithRelationResponse(user.getId(), user.getName(), user.getEmail(),
                                 user.getOrders().stream()
-                                        .map(order -> new OrderResponse(order.getId(), order.getTotalPrice(), order.getTime(), order.getUser()))
+                                        .map(order -> new OrderResponse(order.getId(), order.getTotalPrice(), order.getTime(),
+                                                order.getOrderDetails().stream()
+                                                        .map(detail -> new OrderDetailResponse(detail.getId(), detail.getQuantity(), detail.getPrice())).collect(Collectors.toList()))
+                                        )
                                         .collect(Collectors.toList()))
                 ).collect(Collectors.toList());
 
