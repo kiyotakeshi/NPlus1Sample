@@ -6,10 +6,17 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "`order`") // escape reserved keyword
 @Getter
+@NamedEntityGraph(
+        name = "order_all",
+        attributeNodes = {
+                @NamedAttributeNode(value = "orderDetails")
+        }
+)
 public class Order {
 
     @Id
@@ -26,12 +33,12 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetails;
+    private Set<OrderDetail> orderDetails;
 
     protected Order(){
     }
 
-    public Order(int totalPrice, LocalDateTime time, User user, List<OrderDetail> orderDetails) {
+    public Order(int totalPrice, LocalDateTime time, User user, Set<OrderDetail> orderDetails) {
         this.totalPrice = totalPrice;
         this.time = time;
         this.user = user;
